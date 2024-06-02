@@ -32,7 +32,7 @@ springboot架构完成的项目,有不错的前端页面,具有session的登入�
 2. 导入项目到IDE（例如Eclipse或IntelliJ IDEA）。
 3. 修改数据库配置文件（例如application.properties或application.yml），将数据库连接信息改为你本地的配置。
 4. 运行项目：在IDE中运行项目，或者使用构建工具（例如Maven或Gradle）运行项目。
-5. 准备好相关的数据库表,主要是两张user和pages,用于登入验证和文章存储
+5. 准备好相关的数据库表,主要是两张user和pages,用于登入验证和文章存储,我已经给了一张pages的sql表,我默认数据库是jack,建议创建jack维护数据库,user表参考pojo类中的account类,注意不是User类
 6. 在浏览器中访问项目：打开浏览器，输入URL `http://localhost:8081/welcom.html`, 可以访问项目的首页。
 
 ## 配置
