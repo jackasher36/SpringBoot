@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find - 失物招领系统</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            background-color: #343a40;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .header {
+            background-color: #2f8f83;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header input {
+            width: 200px;
+            border: none;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .header input:focus {
+            outline: none;
+        }
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+        .card {
+            width: 30%;
+            margin-bottom: 20px;
+        }
+        .card img {
+            max-height: 100px;
+            object-fit: contain;
+        }
+        .card .btn {
+            margin-top: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .card .btn:hover {
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+
+<div class="d-flex">
+    <div class="sidebar p-3">
+        <div class="text-center mb-4">
+            <h2>Find</h2>
+        </div>
+        <div class="text-center mb-4">
+            <img src="https://vuejobs.com/?utm_source=vuejs.com&utm_campaign=sponsor" alt="Admin" class="rounded-circle" style="width: 100px;">
+            <p>Admin</p>
+            <p>站点管理员</p>
+        </div>
+        <a href="#">失物模块</a>
+        <a href="#">失物信息总览</a>
+        <a href="#">物品搜索</a>
+        <a href="#">物品发布</a>
+        <a href="#">兑换发布</a>
+    </div>
+
+    <div class="flex-grow-1">
+        <div class="header p-3">
+            <span>🔔 查看所有失物发布信息</span>
+            <input type="text" id="searchInput" placeholder="搜索">
+            <div>
+                <span>🔔</span>
+                <span>⚙️</span>
+            </div>
+        </div>
+
+        <div class="card-container" id="cardContainer">
+            <div class="card border">
+                <div class="card-body">
+                    <h5 class="card-title">丢失《三体》</h5>
+                    <p class="card-text">丢失时间：2018.6.7晚上7点左右<br>丢失地点：综合楼403</p>
+                    <img src="https://via.placeholder.com/100" alt="Book">
+                    <p class="card-text mt-3">失物描述：...（省略）</p>
+                    <a href="#" class="btn btn-danger">物品已经找回</a>
+                </div>
+            </div>
+            <div class="card border">
+                <div class="card-body">
+                    <h5 class="card-title">找到一部手机</h5>
+                    <p class="card-text">丢失时间：2018.6.7晚上7点左右<br>丢失地点：综合楼403</p>
+                    <img src="https://via.placeholder.com/100" alt="Phone">
+                    <p class="card-text mt-3">失物描述：...（省略）</p>
+                    <a href="#" class="btn btn-info">找到失物</a>
+                </div>
+            </div>
+            <div class="card border">
+                <div class="card-body">
+                    <h5 class="card-title">丢失一张校园卡</h5>
+                    <p class="card-text">丢失时间：2018.6.7晚上7点左右<br>丢失地点：综合楼403</p>
+                    <img src="https://via.placeholder.com/100" alt="Card">
+                    <p class="card-text mt-3">失物描述：...（省略）</p>
+                    <a href="#" class="btn btn-warning">失物发布</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const filter = this.value.toLowerCase();
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            const text = card.querySelector('.card-text').textContent.toLowerCase();
+            if (title.includes(filter) || text.includes(filter)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

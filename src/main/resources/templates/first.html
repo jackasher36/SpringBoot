@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Layout</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Roboto', sans-serif;
+    }
+    .container {
+      margin-top: 40px;
+    }
+    .box {
+      border: 1px solid #007bff;
+      text-align: center;
+      padding: 30px;
+      margin: 15px 0;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .welcome {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .welcome h2 {
+      font-size: 36px;
+      color: #343a40;
+      font-weight: bold;
+    }
+    .box a {
+      text-decoration: none;
+      color: #007bff;
+      display: block;
+      font-size: 24px;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+    .box a:hover {
+      color: #0056b3;
+    }
+    .navbar-custom {
+      background-color: #007bff;
+      padding: 10px 0;
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: white;
+      transition: color 0.3s ease;
+    }
+    .navbar-custom .nav-link:hover {
+      color: #cce7ff;
+    }
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .search-bar input[type="text"] {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 250px;
+      transition: box-shadow 0.3s ease;
+    }
+    .search-bar input[type="text"]:focus {
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    }
+    .search-bar button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-left: 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    .search-bar button:hover {
+      background-color: #0056b3;
+    }
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .content .box {
+      flex: 1 1 calc(50% - 30px);
+      margin: 15px;
+    }
+    .navbar {
+      background-color: rgba(0, 179, 146, 0.54);
+      padding: 15px 0;
+      color: white;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .publish-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #28a745;
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 50%;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .footer {
+      background-color: #343a40;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      margin-top: 140px;
+    }
+  </style>
+</head>
+<body>
+<!--<nav class="navbar navbar-expand-lg navbar-custom">-->
+<!--  <a class="navbar-brand" href="#">325论坛</a>-->
+<!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--    <span class="navbar-toggler-icon"></span>-->
+<!--  </button>-->
+<!--  <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--    <ul class="navbar-nav ml-auto">-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">首页</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">节点</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">娱乐区</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">宿舍区</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">学习区</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">随笔区</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">生活区</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+
+<!--</nav>-->
+<!--<div class="search-bar">-->
+<!--  <input type="text" placeholder="请输入搜索内容">-->
+<!--  <button>搜索</button>-->
+<!--</div>-->
+<!--<div class="navbar">-->
+<!--  <a href="#">首页</a>-->
+<!--  <a href="#">节点</a>-->
+<!--  <a href="#">娱乐区</a>-->
+<!--  <a href="#">宿舍区</a>-->
+<!--  <a href="#">学习区</a>-->
+<!--  <a href="#">随笔区</a>-->
+<!--  <a href="#">生活区</a>-->
+<!--</div>-->
+
+<div class="container">
+  <div class="welcome">
+    <h2>Welcome to Our Website</h2>
+  </div>
+  <div class="content">
+    <div class="box"><a href="/forum"><h3>学生论坛</h3></a></div>
+    <div class="box"><a href="/forum"><h3>学校公告</h3></a></div>
+    <div class="box"><a href="/LostAndFound"><h3>失物招领</h3></a></div>
+    <div class="box"><a href="/trade"><h3>二手交易</h3></a></div>
+    <div class="box"><a href="/second"><h3>活动组织</h3></a></div>
+    <div class="box"><a href="/life"><h3>生活分享</h3></a></div>
+  </div>
+</div>
+<div class="footer">
+  <p>&copy; 2024 325论坛. All rights reserved.</p>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

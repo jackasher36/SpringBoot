@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电商后台管理系统</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .sidebar {
+      width: 200px;
+      background-color: #343a40;
+      color: #fff;
+      height: 100vh;
+      position: fixed;
+    }
+    .sidebar h2 {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 1.2em;
+      margin: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      padding: 15px 20px;
+      border-bottom: 1px solid #474f57;
+    }
+    .sidebar .menu-item {
+      display: flex;
+      align-items: center;
+    }
+    .sidebar .menu-item img {
+      margin-right: 10px;
+    }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+    }
+    .main-content {
+      margin-left: 200px;
+      flex-grow: 1;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    .header {
+      background-color: #343a40;
+      color: #fff;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header button {
+      background-color: #6c757d;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .table-container {
+      margin-top: 20px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .table-container h3 {
+      margin-bottom: 20px;
+    }
+    .table-container .btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table th, table td {
+      padding: 10px;
+      border: 1px solid #dee2e6;
+    }
+    table th {
+      background-color: #f1f1f1;
+    }
+    table td .btn {
+      padding: 5px 10px;
+      margin-right: 5px;
+    }
+    .btn-edit {
+      background-color: #007bff;
+    }
+    .btn-delete {
+      background-color: #dc3545;
+    }
+    .btn-assign {
+      background-color: #ffc107;
+    }
+  </style>
+  <style type="text/css">
+    a:link {
+      text-decoration: none;
+    }
+    a:visited {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    a:active {
+      text-decoration: none;
+    }
+  </style>
+
+</head>
+<body>
+<div class="sidebar">
+  <h2>学校后台管理系统</h2>
+  <ul>
+    <li><a href="#">用户管理</a></li>
+    <li><a href="#">权限管理</a></li>
+    <li><a href="#" class="menu-item">发布公告</a></li>
+    <li><a href="#">评论汇总</a></li>
+    <li><a href="#">论坛入口</a></li>
+    <li><a href="#">学生界面</a></li>
+    <li><a href="#">数据统计</a></li>
+  </ul>
+</div>
+<div class="main-content">
+  <div class="header">
+    <span>首页 > 权限管理 > 角色列表</span>
+    <button>Quit</button>
+  </div>
+  <div class="table-container">
+    <h3>角色列表</h3>
+    <button class="btn">添加角色</button>
+    <table>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>角色名称</th>
+        <th>角色描述</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>1</td>
+        <td>管理员</td>
+        <td>拥有系统所有权限</td>
+        <td>
+          <button class="btn btn-edit"><a href="edit">编辑</a></button>
+          <button class="btn btn-delete">删除</button>
+          <button class="btn btn-assign">分配权限</button>
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>编辑</td>
+        <td>可以编辑内容</td>
+        <td>
+          <button class="btn btn-edit">编辑</button>
+          <button class="btn btn-delete">删除</button>
+          <button class="btn btn-assign">分配权限</button>
+        </td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>用户</td>
+        <td>可以查看内容</td>
+        <td>
+          <button class="btn btn-edit">编辑</button>
+          <button class="btn btn-delete">删除</button>
+          <button class="btn btn-assign">分配权限</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redis Enterprise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0e1217;
+            color: white;
+        }
+
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #0e1217;
+            padding: 20px;
+            text-align: left;
+        }
+        footer p {
+            margin: 0;
+            color: white;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            color: black;
+        }
+        .navbar .logo img {
+            height: 30px;
+        }
+        .navbar .menu {
+            display: flex;
+            gap: 20px;
+        }
+        .navbar .menu a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        .navbar .menu a:hover {
+            color: #e5352b;
+        }
+        .navbar .try-redis {
+            color: white;
+            background-color: #e5352b;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .header {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #0e1217;
+        }
+        .header h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            opacity: 0;
+        }
+        .header p {
+            font-size: 18px;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+        }
+        .button-container {
+            margin-top: 30px;
+            opacity: 0;
+        }
+        .button-container a {
+            text-decoration: none;
+            color: #0e1217;
+            background-color: #d2f36c;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .contact-link {
+            text-decoration: none;
+            color: #e5352b;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<link rel="stylesheet" href="styles.css">
+
+<header>
+    <nav class="navbar">
+        <div class="logo"></div>
+        <ul class="nav-links">
+            <li><a href="product.html">Product</a></li>
+            <li><a href="problem.html">Problem</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="#">Doc</a></li>
+            <li><a href="welcom.html">WelcomePage</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" class="nav-link"></a>
+            <a href="#" class="nav-link"></a>
+            <a href="/login.html" class="try-redis">Try Forum</a>
+        </div>
+    </nav>
+</header>
+
+<div class="header">
+    <h1 id="headline">看看我们的网页有多棒</h1>
+    <p id="subheadline">进入史上最优秀的学校集合网站。</p>
+    <div class="button-container" id="button-container">
+        <a href="/login.html">试试</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Helper function to animate text appearance
+        function animateText(element, delay) {
+            const text = element.innerText;
+            element.innerText = '';
+            element.style.opacity = 1;
+
+            text.split('').forEach((char, index) => {
+                setTimeout(() => {
+                    element.innerText += char;
+                }, delay * index);
+            });
+        }
+
+        // Animate headline
+        const headline = document.getElementById('headline');
+        animateText(headline, 100);
+
+        // Animate subheadline after headline
+        setTimeout(() => {
+            const subheadline = document.getElementById('subheadline');
+            animateText(subheadline, 50);
+        }, headline.innerText.length * 100 + 500);
+
+        // Show button after subheadline
+        setTimeout(() => {
+            const buttonContainer = document.getElementById('button-container');
+            buttonContainer.style.opacity = 1;
+        }, (headline.innerText.length * 100) + (document.getElementById('subheadline').innerText.length * 50) + 1000);
+    });
+</script>
+
+</body>
+</html>

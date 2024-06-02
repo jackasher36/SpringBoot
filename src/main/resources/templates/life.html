@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小红书页面示例</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    .header img {
+      height: 30px;
+    }
+    .search-bar {
+      flex-grow: 1;
+      margin: 0 20px;
+      display: flex;
+      align-items: center;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      outline: none;
+      font-size: 14px;
+    }
+    .menu a {
+      margin-left: 20px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .sidebar {
+      width: 200px;
+      padding: 20px;
+      background-color: #fff;
+      border-right: 1px solid #eee;
+      position: fixed;
+      top: 50px;
+      height: calc(100% - 50px);
+    }
+    .sidebar a {
+      display: block;
+      padding: 10px 0;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .sidebar .login {
+      background-color: #f34a4a;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .sidebar .desc ul {
+      list-style: none;
+      padding: 0;
+      color: #555;
+      font-size: 14px;
+    }
+    .sidebar .desc ul li {
+      margin: 10px 0;
+    }
+    .content {
+      margin-left: 220px;
+      padding: 70px 20px 20px;
+    }
+    .content .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .content .tabs a {
+      margin-right: 20px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid transparent;
+    }
+    .content .tabs a:hover {
+      border-bottom: 2px solid #f34a4a;
+    }
+    .content .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .card {
+      width: calc(25% - 20px);
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+    .card-content {
+      padding: 10px;
+    }
+    .card-content p:first-child {
+      font-weight: bold;
+      color: #333;
+      margin: 0 0 5px 0;
+    }
+    .card-content p:last-child {
+      color: #777;
+      font-size: 14px;
+      margin: 0;
+    }
+    .card-footer {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <img src="https://via.placeholder.com/100x30" alt="小红书">
+  <div class="search-bar">
+    <input type="text" placeholder="登录探索更多内容">
+  </div>
+  <div class="menu">
+    <a href="#">创作中心</a>
+    <a href="#">消息</a>
+    <a href="#">购物车</a>
+    <a href="#">我</a>
+  </div>
+</div>
+<div class="sidebar">
+  <a href="#">推荐</a>
+  <a href="#">关注</a>
+  <a href="#">发现</a>
+  <a href="#">视频</a>
+  <a href="#">直播</a>
+  <div class="login">登录</div>
+  <div class="desc">
+    <ul>
+      <li>关于我们</li>
+      <li>联系我们</li>
+      <li>隐私政策</li>
+      <li>用户协议</li>
+    </ul>
+  </div>
+</div>
+<div class="content">
+  <div class="tabs">
+    <a href="#">家居</a>
+    <a href="#">游玩</a>
+    <a href="#">旅行</a>
+    <a href="#">健身</a>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="图片1">
+      <div class="card-content">
+        <p>acne小白鞋今天价格也太好了吧！</p>
+        <p>买买买日常</p>
+      </div>
+      <div class="card-footer">
+        <span>10+</span>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="图片2">
+      <div class="card-content">
+        <p>荔测LV软盒子两大缺陷！跟着改造不踩雷</p>
+        <p>蛋糕小包</p>
+      </div>
+      <div class="card-footer">
+        <span>10+</span>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="图片3">
+      <div class="card-content">
+        <p>2024年6月四六级翻译预测：漆扇</p>
+        <p>薄荷的学习日记</p>
+      </div>
+      <div class="card-footer">
+        <span>1w+</span>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="图片4">
+      <div class="card-content">
+        <p>很多有钱人会打着光环P图</p>
+        <p>青砖</p>
+      </div>
+      <div class="card-footer">
+        <span>1k+</span>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="图片5">
+      <div class="card-content">
+        <p>乐山，理工学子食堂冒菜</p>
+        <p>赵珊珊</p>
+      </div>
+      <div class="card-footer">
+        <span>100+</span>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="图片6">
+      <div class="card-content">
+        <p>每天听力一小时，美国人常用1000句</p>
+        <p>高效练耳朵</p>
+      </div>
+      <div class="card-footer">
+        <span>200+</span>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="图片7">
+      <div class="card-content">
+        <p>158CM | Lululemon利用率试穿碎碎念</p>
+        <p>试穿碎碎念</p>
+      </div>
+      <div class="card-footer">
+        <span>300+</span>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="图片8">
+      <div class="card-content">
+        <p>完全被种草了，卡地亚浴缸</p>
+        <p>卡地亚浴缸</p>
+      </div>
+      <div class="card-footer">
+        <span>400+</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

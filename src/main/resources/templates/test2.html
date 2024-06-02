@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>325论坛 - ShadowQ</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    .header {
+      background-color: #007bff;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .header span {
+      font-size: 0.9em;
+      color: #e0e0e0;
+    }
+
+    .navbar {
+      background-color: #0056b3;
+      padding: 15px 0;
+      color: white;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 0 15px;
+      font-size: 0.9em;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #ffd700;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .no-underline {
+      text-decoration: none; /* 去掉下划线 */
+      color: black; /* 设置超链接的颜色为黑色 */
+    }
+
+    .no-underline:hover {
+      color: #ffd700; /* 设置悬停时的颜色为黄色 */
+    }
+
+    .search-bar input[type="text"] {
+      padding: 8px;
+      font-size: 0.9em;
+      border: 1px solid #ced4da;
+      border-radius: 20px;
+      width: 300px;
+      transition: width 0.4s ease-in-out;
+    }
+
+    .search-bar input[type="text"]:focus {
+      width: 400px;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 8px 15px;
+      font-size: 0.9em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+      margin-left: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .search-bar button:hover {
+      background-color: #0056b3;
+    }
+
+    .container {
+      display: flex;
+      margin: 20px auto;
+      max-width: 1200px;
+      width: 90%;
+    }
+
+    .main-content {
+      flex: 3;
+      margin-right: 20px;
+    }
+
+    .post {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .post:hover {
+      transform: translateY(-5px);
+    }
+
+    .post h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.2em;
+      color: #007bff;
+    }
+
+    .post p {
+      margin: 0;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .sidebar {
+      flex: 1;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .sidebar h3 {
+      margin: 0 0 20px 0;
+      font-size: 1.1em;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 10px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      margin: 10px 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s;
+      font-size: 0.9em;
+    }
+
+    .sidebar ul li a:hover {
+      color: #007bff;
+    }
+
+    .publish-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 50%;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .publish-button:hover {
+      background-color: #218838;
+      transform: translateY(-5px);
+    }
+
+    .publish-button:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <h1>325论坛</h1>
+  <span>ShadowQ</span>
+</div>
+<div class="navbar">
+  <a href="#">首页</a>
+  <a href="#">节点</a>
+  <a href="#">娱乐区</a>
+  <a href="#">宿舍区</a>
+  <a href="#">学习区</a>
+  <a href="#">随笔区</a>
+  <a href="#">生活区</a>
+</div>
+<div class="search-bar">
+  <input type="text" placeholder="请输入搜索内容">
+  <button>搜索</button>
+</div>
+
+<!--<span th:text="${reviews}"></span>-->
+
+<div class="container">
+  <div class="container">
+    <div class="container">
+      <div class="main-content">
+        <div th:each="review : ${reviews}" class="post">
+          <h3><a class="no-underline" th:href="@{/page(title=${review.title},
+
+                     author=${review.author})}"
+
+                 th:text="${review.title}"></a></h3>
+          <p>作者: <span th:text="${review.author}"></span></p>
+          <p>
+            摘要:
+            <span th:text="${#strings.abbreviate(review.getContent(),15)}"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <h3>325论坛: 独立思考能力的人</h3>
+      <ul>
+        <li><a href="#">为创作者提供新的舞台</a></li>
+        <li><a href="#">这是我们大学的舞台</a></li>
+      </ul>
+      <h3>你该知道</h3>
+      <ul>
+        <li>论坛开放,可以畅谈</li>
+        <li>人生从不乏味</li>
+      </ul>
+      <h3>注意事项</h3>
+      <ul>
+        <li><a href="#">文章需要审核才能发布</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<button class="publish-button"><a class="no-underline" href="/upload">发布</a></button>
+</body>
+</html>
