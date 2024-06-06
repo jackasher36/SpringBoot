@@ -1,5 +1,6 @@
 package com.example.springboot.service;
 
+import com.example.springboot.pojo.Register;
 import com.example.springboot.pojo.Reviews;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,7 +21,17 @@ public interface UserService {
                     @Param("content") String content,
                     @Param("category") String category);
 
-    List<Reviews> showPages();
+    List<Reviews> showPages(String page);
 
-    Reviews showTitle(String title, String author);
+    Reviews showTitle(String title, String author,String publictime);
+
+    int RegisterUser(String studentId,String password,String phone);
+
+    int addUser(String username,String password);
+
+    Register findRegisterById(String studentId);
+
+    List<Reviews> likeSearch(String condition);
+
+
 }

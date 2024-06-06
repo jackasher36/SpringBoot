@@ -1,40 +1,16 @@
 package com.example.springboot.pojo;
 
+import lombok.Data;
+
 /**
  * @author Jackasher
  * @version 1.0
  * @className User
  * @since 1.0
  **/
+@Data
 public class User {
-    private String id;
-    private String name;
-    private int age;
+    private String username;
+    private String password;
 
-    public User(String id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
 }

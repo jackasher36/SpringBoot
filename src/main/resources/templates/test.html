@@ -1,51 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" xmlns:th="www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Hexo with CDN</title>
     <style>
         body {
-            background-color: #ffffff;
-            color: #007bff; /* 修改为蓝色系 */
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh;
         }
-        .error-container {
-            text-align: center;
-            padding: 20px;
-            border: 1px solid rgba(198, 214, 245, 0.97);
-            background-color: rgba(215, 243, 248, 0.89);
-            border-radius: 8px;
+        .container {
+            background-color: white;
+            width: 70%;
+            max-width: 1000px;
+            padding: 40px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 20px;
         }
-        .error-container h1 {
-            font-size: 36px;
+        .post-header {
+            text-align: left;
+            border-left: 5px solid #444;
+            padding-left: 10px;
+        }
+        .post-header h1 {
+            font-size: 2em;
+            margin: 0.67em 0;
+        }
+        .post-meta {
+            color: #666;
             margin-bottom: 20px;
         }
-        .error-container p {
-            font-size: 18px;
-            margin-bottom: 20px;
+        .post-meta p {
+            margin: 5px 0;
         }
-        .error-container a {
-            color: #007bff; /* 修改为蓝色系 */
+        .post-content {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .post-content pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .post-tags, .post-share {
+            display: flex;
+            align-items: center;
+        }
+        .post-tags span, .post-share span {
+            margin-right: 10px;
+            color: #999;
+        }
+        .post-tags a, .post-share a {
             text-decoration: none;
-            font-weight: bold;
+            color: #007bff;
+            margin-right: 10px;
         }
-        .error-container a:hover {
+        .post-tags a:hover, .post-share a:hover {
             text-decoration: underline;
+        }
+        .donate-button {
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-color: #f44336;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 24px;
+            margin: 20px auto;
+        }
+
+        /* Comments Section */
+        .comments {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .comments h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .comment {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .comment-author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .comment-content {
+            margin-bottom: 5px;
+        }
+        .comment-date {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .comment-form {
+            margin-top: 20px;
+        }
+        .comment-form h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .comment-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .comment-form input[type="text"],
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .comment-form button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .comment-form button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-<div class="error-container">
-    <h1>登入失败</h1>
-    <p>账号和密码可能错误.</p>
-    <a href="/login">返回登入页面</a>
+<div class="container">
+    <header class="post-header">
+        <h1>Information</h1>
+        <div class="post-meta">
+            <p>Time: 2024-04-12 15:52:40</p>
+            <p>Author: <span th:text="${reviews.getAuthor()}"></span></p>
+        </div>
+    </header>
+    <article class="post-content">
+        <h2><span th:text="${reviews.getTitle()}"></span></h2>
+        <pre><span th:text="${reviews.getContent()}"></span></pre>
+    </article>
+    <footer class="post-footer">
+        <div class="post-tags">
+            <span>Tags:</span>
+            <a href="#">Blog</a>
+            <a href="#"><span th:text="${reviews.getAuthor()}"></span></a>
+        </div>
+        <div class="post-share">
+            <span>Share:</span>
+            <a href="#">Share Link</a>
+        </div>
+    </footer>
+
+    <!-- Comments Section -->
+    <section class="comments">
+        <h2>Comments</h2>
+        <div class="comment">
+            <p class="comment-author">Author: <span>John Doe</span></p>
+            <p class="comment-content">This is a sample comment. The layout is clean and easy to read!</p>
+            <p class="comment-date">Posted on: 2024-04-12</p>
+        </div>
+
+        <div class="comment">
+<!--            <p class="comment-author">Author: <span>Jane Smith</span></p>-->
+<!--            <p class="comment-content">Great post! I learned a lot from this.</p>-->
+<!--            <p class="comment-date">Posted on: 2024-04-13</p>-->
+<!--        </div>-->
+        <!-- Add more comments as needed -->
+        <div class="comment-form">
+            <h3>Leave a Comment</h3>
+            <form>
+                <label for="author">Name:</label>
+                <input type="text" id="author" name="author" required>
+
+                <label for="content">Comment:</label>
+                <textarea id="content" name="content" rows="4" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
 </div>
 </body>
 </html>

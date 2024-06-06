@@ -5,6 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>325论坛 - ShadowQ</title>
     <style>
+        /* Comments Section */
+        .comments {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .comments h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .comment {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .comment-author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .comment-content {
+            margin-bottom: 5px;
+        }
+        .comment-date {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .comment-form {
+            margin-top: 20px;
+        }
+        .comment-form h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .comment-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .comment-form input[type="text"],
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .comment-form button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .comment-form button:hover {
+            background-color: #0056b3;
+        }
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
@@ -237,8 +296,39 @@
         </ul>
         <h3>注意事项</h3>
         <ul>
-            <li><a href="#">文章需要审核才能发布</a></li>
+            <li><a href="#">文章在后台有审核</a></li>
         </ul>
+    </div>
+    <div class="container">
+        <!-- Existing content -->
+
+        <!-- Comments Section -->
+        <section class="comments">
+            <h2>Comments</h2>
+            <div class="comment">
+                <p class="comment-author">Author: <span>John Doe</span></p>
+                <p class="comment-content">This is a sample comment. The layout is clean and easy to read!</p>
+                <p class="comment-date">Posted on: 2024-04-12</p>
+            </div>
+            <div class="comment">
+                <p class="comment-author">Author: <span>Jane Smith</span></p>
+                <p class="comment-content">Great post! I learned a lot from this.</p>
+                <p class="comment-date">Posted on: 2024-04-13</p>
+            </div>
+            <!-- Add more comments as needed -->
+            <div class="comment-form">
+                <h3>Leave a Comment</h3>
+                <form>
+                    <label for="author">Name:</label>
+                    <input type="text" id="author" name="author" required>
+
+                    <label for="content">Comment:</label>
+                    <textarea id="content" name="content" rows="4" required></textarea>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
     </div>
 
 </div>

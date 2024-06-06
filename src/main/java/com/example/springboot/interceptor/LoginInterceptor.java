@@ -26,6 +26,14 @@ public class LoginInterceptor implements HandlerInterceptor {
             // 如果请求处理程序是 ResourceHttpRequestHandler（用于处理静态资源请求），则直接放行
             return true;
         }
+
+        String requestURI = request.getRequestURI();
+
+        if (excludePath(requestURI)) {
+            return true;
+        }
+
+
         HttpSession session = request.getSession();
         Object sessionAttribute = session.getAttribute("certify");
         System.out.println(sessionAttribute);
@@ -36,7 +44,14 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
+
+
         // 执行相应的逻辑
         return true;
+    }
+
+    private boolean excludePath(String requestURI) {
+        // 在此处添加不需要拦截的请求路径
+        return requestURI.startsWith("/sendVerificationCode") || requestURI.equals("/register");
     }
 }

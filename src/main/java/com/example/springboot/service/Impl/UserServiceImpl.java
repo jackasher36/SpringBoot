@@ -1,6 +1,7 @@
 package com.example.springboot.service.Impl;
 
 import com.example.springboot.dao.UserDao;
+import com.example.springboot.pojo.Register;
 import com.example.springboot.pojo.Reviews;
 import com.example.springboot.service.UserService;
 import jakarta.annotation.Resource;
@@ -35,14 +36,68 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Reviews> showPages() {
-        List<Reviews> reviews = userDao.selectAllBlogs();
+    public List<Reviews> showPages(String page) {
+        int i;
+        System.out.println("helooooooooo??????" + page);
+        boolean tmp = page != null && !page.isEmpty();;
+        System.out.println("pagenull为" + tmp);
+        if (tmp) {
+            try {
+                i = Integer.parseInt(page);
+            } catch (NumberFormatException e) {
+                i = 1; // 如果 page 不是一个有效的数字，则设置为默认值 1
+            }
+        } else {
+            i = 1; // 如果 page 为 null 或为空字符串，则设置为默认值 1
+        }
+
+        int pages = (i-1)*10;
+        List<Reviews> reviews = userDao.selectAllBlogs(pages);
         return reviews;
     }
 
     @Override
-    public Reviews showTitle(String title, String author) {
-        Reviews reviews = userDao.selectSingleReview(title, author);
+    public Reviews showTitle(String title, String author,String publictime) {
+        Reviews reviews = userDao.selectSingleReview(title, author,publictime);
+        return reviews;
+    }
+
+    @Override
+    public int RegisterUser(String studentId, String password, String phone) {
+
+        Register register = userDao.selectRegisterById(studentId);
+        System.out.println(register);
+        System.out.println("register是不是==null" + register==null);
+
+        if (register == null) {
+            int i = userDao.insertRegister(studentId, password, phone);
+            return i;
+        }
+
+        return -1;
+    }
+
+    @Override
+    public int addUser(String username, String password) {
+        System.out.println("username ==" + username);
+        System.out.println(password);
+        System.out.println("password==" + password);
+        int i = userDao.insertUser(username, password);
+        System.out.println("i="+ i);
+        if (i != 1) {
+            return -1;
+        }
+        return i;
+    }
+
+    @Override
+    public Register findRegisterById(String studentId) {
+        return null;
+    }
+
+    @Override
+    public List<Reviews> likeSearch(String condition) {
+        List<Reviews> reviews = userDao.searchLike(condition);
         return reviews;
     }
 
