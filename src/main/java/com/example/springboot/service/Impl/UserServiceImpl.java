@@ -1,12 +1,15 @@
 package com.example.springboot.service.Impl;
 
 import com.example.springboot.dao.UserDao;
+import com.example.springboot.pojo.Comment;
 import com.example.springboot.pojo.Register;
 import com.example.springboot.pojo.Reviews;
 import com.example.springboot.service.UserService;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -99,6 +102,19 @@ public class UserServiceImpl implements UserService {
     public List<Reviews> likeSearch(String condition) {
         List<Reviews> reviews = userDao.searchLike(condition);
         return reviews;
+    }
+
+    @Override
+    public int postComment(String message_time, String author, String comments, HttpSession httpSession) {
+        String username = (String) httpSession.getAttribute("username");
+        int i = userDao.insertComment(message_time, author, comments,username);
+        return i;
+    }
+
+    @Override
+    public List<Comment> getComments(String message_time) {
+        List<Comment> comments = userDao.selectComment(message_time);
+        return comments;
     }
 
 }

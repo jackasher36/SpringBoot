@@ -1,34 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Posts</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注册 - 325论坛</title>
+  <style>
+    /* CSS样式，省略部分内容 */
+  </style>
 </head>
 <body>
 <div class="container">
-  <h1>Posts</h1>
-  <div class="list-group">
-    <div th:each="post : ${postPage.content}" class="list-group-item">
-      <h5 th:text="${post.title}"></h5>
-      <p th:text="${post.content}"></p>
-    </div>
-  </div>
+  <h2>注册</h2>
+  <form action="/register2" method="post" id="registerForm">
+    <label for="username">学号:</label>
+    <input type="text" id="username" name="studentId" required>
 
-  <!-- 分页导航 -->
-  <nav>
-    <ul class="pagination">
-      <li th:class="${postPage.hasPrevious() ? 'page-item' : 'page-item disabled'}">
-        <a class="page-link" th:href="@{/posts(page=${postPage.number - 1}, size=${postPage.size})}">Previous</a>
-      </li>
-      <li th:each="i : ${#numbers.sequence(1, postPage.totalPages)}" th:class="${postPage.number + 1 == i ? 'page-item active' : 'page-item'}">
-        <a class="page-link" th:href="@{/posts(page=${i}, size=${postPage.size})}" th:text="${i}"></a>
-      </li>
-      <li th:class="${postPage.hasNext() ? 'page-item' : 'page-item disabled'}">
-        <a class="page-link" th:href="@{/posts(page=${postPage.number + 1}, size=${postPage.size})}">Next</a>
-      </li>
-    </ul>
-  </nav>
+    <label for="password">密码:</label>
+    <input type="password" id="password" name="password" required>
+
+    <input type="submit" value="注册">
+  </form>
 </div>
+
+
+
 </body>
 </html>

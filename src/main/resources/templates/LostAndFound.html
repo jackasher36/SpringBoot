@@ -8,12 +8,16 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
         }
         .sidebar {
             background-color: #343a40;
             color: white;
-            height: 100vh;
+            min-width: 200px;
             padding-top: 20px;
+            height: 100vh;
         }
         .sidebar a {
             color: white;
@@ -33,13 +37,15 @@
             justify-content: space-between;
             align-items: center;
         }
-        .header input {
+        .header input[type="text"] {
             width: 200px;
+            padding: 8px;
             border: none;
-            padding: 5px;
             border-radius: 4px;
+            font-size: 14px;
+            margin-right: 10px;
         }
-        .header input:focus {
+        .header input[type="text"]:focus {
             outline: none;
         }
         .card-container {
@@ -49,14 +55,28 @@
             flex-wrap: wrap;
         }
         .card {
-            width: 30%;
+            width: calc(30% - 20px);
             margin-bottom: 20px;
+            transition: transform 0.3s;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         .card img {
-            max-height: 100px;
-            object-fit: contain;
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .card .card-body {
+            padding: 15px;
         }
         .card .btn {
+            width: 100%;
             margin-top: 10px;
             transition: background-color 0.3s, color 0.3s;
         }
@@ -81,11 +101,10 @@
         <div class="text-center mb-4">
             <h2>Find</h2>
         </div>
-        <div class="text-center mb-4">
-            <img src="https://vuejobs.com/?utm_source=vuejs.com&utm_campaign=sponsor" alt="Admin" class="rounded-circle" style="width: 100px;">
-            <p>Admin</p>
-            <p>站点管理员</p>
-        </div>
+<!--        <div class="text-center mb-4">-->
+
+<!--            <p>站点管理员</p>-->
+<!--        </div>-->
         <a href="#">失物模块</a>
         <a href="#">失物信息总览</a>
         <a href="#">物品搜索</a>
@@ -108,8 +127,8 @@
                 <div class="card-body">
                     <h5 class="card-title">丢失《三体》</h5>
                     <p class="card-text">丢失时间：2018.6.7晚上7点左右<br>丢失地点：综合楼403</p>
-                    <img src="https://via.placeholder.com/100" alt="Book">
-                    <p class="card-text mt-3">失物描述：...（省略）</p>
+
+                    <p class="card-text mt-3">失物描述：思学楼403找到</p>
                     <a href="#" class="btn btn-danger">物品已经找回</a>
                 </div>
             </div>
@@ -117,8 +136,7 @@
                 <div class="card-body">
                     <h5 class="card-title">找到一部手机</h5>
                     <p class="card-text">丢失时间：2018.6.7晚上7点左右<br>丢失地点：综合楼403</p>
-                    <img src="https://via.placeholder.com/100" alt="Phone">
-                    <p class="card-text mt-3">失物描述：...（省略）</p>
+                    <p class="card-text mt-3">失物描述：有点像iPhone</p>
                     <a href="#" class="btn btn-info">找到失物</a>
                 </div>
             </div>
@@ -126,8 +144,7 @@
                 <div class="card-body">
                     <h5 class="card-title">丢失一张校园卡</h5>
                     <p class="card-text">丢失时间：2018.6.7晚上7点左右<br>丢失地点：综合楼403</p>
-                    <img src="https://via.placeholder.com/100" alt="Card">
-                    <p class="card-text mt-3">失物描述：...（省略）</p>
+                    <p class="card-text mt-3">失物描述：学号是20231223003）</p>
                     <a href="#" class="btn btn-warning">失物发布</a>
                 </div>
             </div>
@@ -144,7 +161,7 @@
             const title = card.querySelector('.card-title').textContent.toLowerCase();
             const text = card.querySelector('.card-text').textContent.toLowerCase();
             if (title.includes(filter) || text.includes(filter)) {
-                card.style.display = '';
+                card.style.display = 'block';
             } else {
                 card.style.display = 'none';
             }

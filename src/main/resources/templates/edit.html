@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>修改用户</title>
   <style>
     body {
@@ -18,31 +18,34 @@
     }
 
     form {
-      margin: 0 auto;
+      margin: 20px auto;
       max-width: 400px;
       padding: 20px;
       border: 1px solid #ddd;
       border-radius: 5px;
-      background-color: #f9f9f9;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     label {
       display: block;
       margin-bottom: 10px;
       text-align: left;
+      font-weight: bold;
     }
 
-    input[type="text"] {
+    input[type="text"], input[type="password"] {
       width: calc(100% - 20px);
-      padding: 8px;
-      margin-bottom: 10px;
+      padding: 10px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 3px;
+      font-size: 16px;
     }
 
     input[type="submit"] {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background-color: #007bff;
       color: #fff;
       border: none;
@@ -57,16 +60,17 @@
   </style>
 </head>
 <body>
-<h1>修改部门</h1>
+<h1>学生信息</h1>
 <hr />
-<form action="/oa/dept/edit" method="post">
-  <label for="depton">账号：</label>
+<form action="/oa/dept/edit" method="get">
+  <label for="depton">学号：</label>
   <input type="text" name="depton" id="depton" required/> <br />
   <label for="dname">密码：</label>
-  <input type="text" name="dname" id="dname" required/> <br />
-  <label for="loc">身份：</label>
+  <input type="password" name="dname" id="dname" required/> <br />
+  <label for="loc">电话号码：</label>
   <input type="text" name="loc" id="loc" required/> <br />
-  <input type="submit" value="修改"> <br />
+  <input type="submit" value="返回"> <br />
 </form>
+
 </body>
 </html>

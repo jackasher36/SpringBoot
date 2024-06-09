@@ -14,26 +14,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RequestHandler {
 
     @RequestMapping("/life")
-    public String life(){
+    public String life() {
         return "life";
     }
+
     @RequestMapping("/LostAndFound")
-    public String lostAndFound(){
+    public String lostAndFound() {
         return "LostAndFound";
     }
+
     @RequestMapping("/trade")
-    public String trade(){
+    public String trade() {
         return "trade";
     }
+
     @RequestMapping("/second")
-    public String second(){
+    public String second() {
         return "second";
     }
 
 
     @RequestMapping("/first")
-    public String first(){
+    public String first() {
         return "first";
+    }
+
+    @RequestMapping("/depart")
+    public String depart() {
+        return "depart";
+    }
+
+    @RequestMapping("/essay")
+    public String essay() {
+        return "essay";
+    }
+    @RequestMapping("/live")
+    public String live() {
+        return "live";
     }
 
 

@@ -8,6 +8,8 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @SpringBootTest
@@ -30,8 +32,9 @@ class SpringbootApplicationTests {
     private UserDao userDao;
     @Test
     void daoTest(){
-        List<Reviews> r = userDao.searchLike("AP");
-        System.out.println(r);
+        String dateTimeString = "2024-02-23 00:00:00";
+
+
     }
 
 }

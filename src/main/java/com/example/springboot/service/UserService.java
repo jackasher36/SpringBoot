@@ -1,9 +1,12 @@
 package com.example.springboot.service;
 
+import com.example.springboot.pojo.Comment;
 import com.example.springboot.pojo.Register;
 import com.example.springboot.pojo.Reviews;
+import jakarta.servlet.http.HttpSession;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -32,6 +35,10 @@ public interface UserService {
     Register findRegisterById(String studentId);
 
     List<Reviews> likeSearch(String condition);
+
+    int postComment(String message_time, String author, String comments, HttpSession httpSession);
+
+    List<Comment> getComments(String message_time);
 
 
 }

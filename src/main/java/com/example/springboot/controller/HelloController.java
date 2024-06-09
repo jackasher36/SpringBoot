@@ -1,14 +1,13 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.pojo.*;
-import com.example.springboot.service.ReviewService;
-import com.example.springboot.service.StudentService;
 import com.example.springboot.service.UserService;
 import com.example.springboot.util.SMS;
 import com.example.springboot.util.SendMsg;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -36,55 +35,9 @@ public class HelloController {
     @Resource
     private SendMsg sendMsg;
 
-    @Resource
-    private StudentService studentService;
 
-    @Autowired
-    private MyDataSource myDataSource;
-    @RequestMapping("/user")
-    @ResponseBody
-    public String hello(){
-        System.out.println(myDataSource);
-        return "欢迎使用springboot的,距离成功只有一步了!!!!!!!!!!!!!!!!!!!!!!" + myDataSource;
-    }
-    @RequestMapping("/test")
-    @ResponseBody
-    public String index(String id){
-        User user = studentService.queryStudent(id);
-        return user.toString();
-    }
-//    @GetMapping("/user/${uid}")
-//    @ResponseBody
-//    public String index2(@PathVariable("uid") String id){
-//        User user = studentService.queryStudent(id);
-//        return user.toString();
-//    }
-    @RequestMapping("/user/{uid}")
-    @ResponseBody
-    public String RESTFul(@PathVariable("uid") String id){
-        User user = studentService.queryStudent(id);
-        return user.toString();
-    }
-//    @RequestMapping("/a")
-//    public String userTest(Model model){
-//        ArrayList<Object> users = new ArrayList<>();
-//        User user = new User("11", "23", 111);
-//        User user2 = new User("111", "2354", 11);
-//        User user3 = new User("113", "232", 21);
-//        users.add(user);
-//        users.add(user2);
-//        users.add(user3);
-//        model.addAttribute("users",users);
-//        return "test";
-//    }
-    @Resource
-    private ReviewService reviewService;
-    @RequestMapping("/b")
-    public String queryAll(Model model){
-        List<Review> reviews = reviewService.getReviews();
-        model.addAttribute("reviews", reviews);
-        return "test";
-    }
+
+
 
     @Resource
     private UserService userService;
@@ -95,6 +48,7 @@ public class HelloController {
         boolean certify = userService.vertify(username, password);
         if (certify == true) {
             httpSession.setAttribute("certify",certify);
+            httpSession.setAttribute("username",username);
             return "first";
         }
         return "error";
@@ -131,12 +85,15 @@ public class HelloController {
     }
 
     @RequestMapping("/page")
-    public String page(String title,String author,String publictime, Model model){
-        System.out.println(title);
-        System.out.println(author);
+    public String page(String title,String author,String publictime, Model model,HttpSession httpSession){
         Reviews reviews = userService.showTitle(title, author,publictime);
+        String message_time = reviews.getPublictime();
+        model.addAttribute("username",httpSession.getAttribute("username"));
         model.addAttribute("reviews",reviews);
-        System.out.println(reviews);
+
+        List<Comment> comments = userService.getComments(message_time);
+        model.addAttribute("comments",comments);
+
         return "page5";
     }
 
@@ -198,12 +155,60 @@ public class HelloController {
         return "register-failed";
     }
 
+    @RequestMapping("/register2")
+    @ResponseBody
+    public String register(@RequestBody User user){
+
+        System.out.println("Heloooo????");
+        String username = user.getUsername();
+        String password = user.getPassword();
+        System.out.println(username);
+        System.out.println(password);
+
+        System.out.println("Heloooo????");
+        int i = userService.addUser(username, password);
+
+
+        System.out.println("i==============" +  i);
+        if (i == 1) {
+            return "{\"success\":\"true\"} ";
+        }else {
+            return "{\"success\":\"false\"} ";
+        }
+
+    }
+
     @RequestMapping("/search")
     public String search(Model model,String condition){
         System.out.println(condition);
         List<Reviews> reviews = userService.likeSearch(condition);
         model.addAttribute("reviews",reviews);
         return "forum3";
+    }
+
+    @RequestMapping("/postcomment")
+    public String post(String title,String author, String content, @RequestParam("message_time") String message_time, HttpSession session, String author2,Model model,HttpSession httpSession){
+
+        /**
+         * 调试参数
+         */
+        System.out.println("title anthor content message_time author 2" +  title + author + content + message_time);
+
+        int i = userService.postComment(message_time, author, content,session);
+
+
+        Reviews reviews = userService.showTitle(title, author2,message_time);
+        String message_time2 = reviews.getPublictime();
+        model.addAttribute("username",httpSession.getAttribute("username"));
+        model.addAttribute("reviews",reviews);
+
+        System.out.println( "review:==============" + reviews);
+
+        List<Comment> comments = userService.getComments(message_time2);
+        model.addAttribute("comments",comments);
+
+
+        return "page5";
     }
 
 }
